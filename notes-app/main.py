@@ -1,31 +1,41 @@
+def data_entry ():
+    while True:
+        data = input("enter your notes here and if you want to delte or read just write : ").lower()
+        return data
+
+def add_note(char):
+    with open("notes_app.txt","a") as file:
+        file.write(char +"\n")
+    return "notes save"
+
+def show_notes():
+    with open("notes_app.txt","r") as file:
+        file_data = file.read()
+        return file_data
+    
 import os
 
-while True:
-    data = input("ENTER YOUR NOTE : ")
-    data_clean = data.strip().lower()
-    file_name = "new_notes.txt"
-
-    if data_clean == "exit" :
-        break
-
-    elif data_clean == "read":
-         with open(file_name , "r") as file:
-            content = file.read()
-            print(content)
-
-    elif data_clean == "delete":
-        if os.path.exists(file_name):
-            os.remove(file_name)
-            print("file deleted")
-        else:
-            print("file not found")
-
-    elif data_clean == "clear":
-        with open(file_name , "w") as file:
-          pass
-          print("File Data Cleared")
-
+def delete_notes():
+    if os.path.exists("notes_app.txt"):
+        os.remove("notes_app.txt")
+        return "delete complete "
     else:
-        with open(file_name , "a") as file:
-          file.write(data+"\n")
-        print("Your note has been saved!")
+        return "file not found"
+    
+def search_notes(char):
+    if char == "read":
+        return show_notes() 
+    elif char == "delete":
+        return delete_notes() 
+    else:
+        return add_note(char) 
+    
+
+while True:
+    saved_data = data_entry()
+
+    if saved_data == "stop":
+            break
+    
+    result = search_notes(saved_data)
+    print(result)
