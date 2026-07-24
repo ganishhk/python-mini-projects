@@ -54,6 +54,7 @@ Python Basics
 | 🏦 Bank Account System | OOP |
 | 👨‍🎓 Student Management System | CRUD |
 | 📚 Library Management System | OOP + JSON + File Handling |
+| 🎬 Movie Collection Manager  | OOP + JSON + File Handling + CRUD + Exception Handling |
 
 ---
 
